@@ -2,3 +2,5 @@
 framework/*
 */config/*
 */*/index.php
+/nbproject/private/
+*/www/assets/*
