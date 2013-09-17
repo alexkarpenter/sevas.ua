@@ -7,7 +7,6 @@ $(document).ready(function(){
 		//Sconsole.log(countNews);
 	});
 })
-
 function outNews(count){
 		$.ajax({
 			url: "/news/index",

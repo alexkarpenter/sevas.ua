@@ -238,7 +238,6 @@ h1:after{
 }
 #header .side-wrap{
 	float:right;
-	width:255px;
 	margin:7px 0 0;
 }
 #header .side-wrap .date{
@@ -3110,6 +3109,7 @@ td a.ui-state-default{
 {
 	font-size: 22px;
 	line-height: 24px;
+	font-weight:bold;
 	margin: 0 14px 0 0;
 	color: #949494;	
 }
@@ -3827,3 +3827,23 @@ a.opener-aricle:hover span{
 	margin: 2px 0 0 7px;
 }
 /*  End talking now  */
+#print {
+	padding: 5px 0 0 27px;
+	cursor: pointer;
+	line-height: 11px;
+	float: left;
+	margin: 0;
+	_width: 20px;
+	background: url('../images/print4.png') no-repeat left center;
+}
+#link_to_print {
+	display: none;
+}
+#link-to-print {
+	color: #7b7b7b;
+	text-decoration: none;
+	border-bottom: 1px solid #7b7b7b;
+}
+#print span {
+	border-bottom: 1px solid #7b7b7b;
+}
