@@ -19,12 +19,23 @@ class News extends BaseActiveRecord
 	public function relations()
 	{
 		return array(
-		    'rating' => array(self::HAS_MANY, 'Rating', 'news_id'),
+		    'rating' => array(self::HAS_MANY, 'Rating', 'obj_id'),
 			'relation_news' => array(self::HAS_MANY, 'RelationNews', 'news_id'),
-			'spravka_link' => array(self::HAS_MANY, 'SpravkaLink', 'news_id'),
-			'coordinate_news' => array(self::HAS_ONE, 'CoordinateNews', 'news_id')
+			'coordinate_news' => array(self::HAS_ONE, 'CoordinateNews', 'news_id'),
+			'comments' => array(self::HAS_MANY, 'Comment', 'news_id')
  		);
 	}
 	
+	public static function getIdByUrl($url)
+	{
+		//$news = new News;
+		
+		$model=News::model()->find(array(
+				'condition'=>'url=:urlID',
+				'params'=>array(':urlID'=>$url),
+			));
+		
+		return (int)($model->id);
+	}
 	
 }
