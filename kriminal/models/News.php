@@ -15,4 +15,14 @@ class News extends BaseActiveRecord
 	{
 		return '{{news}}';
 	}
+	
+	public function dbConnect()
+	{
+		$connection = new CDbConnection($dsn, $username, $password);
+		$connection->active = true;
+		//$connection=Yii::app()->db;
+		$sql = "SELECT * FROM news";
+		$dataReader = $connection->createCommand($sql)->query();
+		return $dataReader;
+	}
 }
