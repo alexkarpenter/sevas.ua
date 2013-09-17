@@ -2,6 +2,8 @@
 framework/*
 */config/*
 */*/index.php
-/nbproject/private/
+/nbproject/*
 */www/assets/*
+runtime/*
+*/runtime/*
 */www/uploads/*
