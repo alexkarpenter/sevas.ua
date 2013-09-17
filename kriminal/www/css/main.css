@@ -23,6 +23,11 @@ img {
 	border-style:none;
 	vertical-align:top;
 }
+ul{
+	margin:0;
+	padding:0;
+}
+li{list-style-type:none;}
 a {
 	color:#004b7c;
 	text-decoration:none;
