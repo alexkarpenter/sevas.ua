@@ -2,6 +2,25 @@
 
 class BaseNewsController extends Controller
 {
+	public function filters() {
+        return array(
+            'accessControl', 
+        );
+    }
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions'=>array('deletecomment'),
+				'roles'=>array('admin'),
+			),
+			array('deny',  
+				'actions'=>array('deletecomment'),
+				'users'=>array('*'),
+			),
+		);
+	}
+	
 	public function actionIndex()
 	{
 		$countNews = 3;
@@ -28,10 +47,15 @@ class BaseNewsController extends Controller
 	
 	public function actionView()
 	{
+		if(!isset($_GET))
+		{
+			$this->redirect(array('news/index'));
+		}	
+		
 		$commentForm = new CommentForm();
 		
 		$url = $_GET['url'];
-		
+
 		$model=News::model()->find(array(
 			'condition'=>'url=:urlID',
 			'params'=>array(':urlID'=>$url),
@@ -59,20 +83,6 @@ class BaseNewsController extends Controller
 		$comment->save();	
 		
 		$this->redirect(array('news/view', 'url'=>$url));
-	}
-	
-	public function accessRules()
-	{
-		return array(
-//			array('allow',
-//				'actions'=>array('deletecomment'),
-//				'users'=>array('admin'),
-//			),
-			array('dany',  
-				'actions'=>array('deletecomment'),
-				'users'=>array('admin'),
-			),
-		);
 	}
 	
 	public function actionDeleteComment()

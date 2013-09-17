@@ -3,6 +3,8 @@
 class WebUser extends CWebUser {
 	private $_model = null;
 	
+	public $loginUrl=array('/user/login');
+	
     public function checkRole($roleName)
 	{
 		return (Yii::app()->user->id ===NULL)? false : array_key_exists($roleName, Yii::app()->authManager->getRoles(Yii::app()->user->id));
