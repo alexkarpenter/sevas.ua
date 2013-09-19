@@ -6,7 +6,7 @@
     <? /* Controller::debug($model); */ ?>
 	<div class="article-list">
 		<?php $this->renderPartial('common.views.news._news_list', compact('model')); ?>
-	</div>	
+	</div>
     <input type="hidden" id="count_elem" value="10">
     <input type="hidden" id="cat_name" value="">
     <input type="hidden" id="proverca" value="1">
