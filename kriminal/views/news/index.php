@@ -4,7 +4,7 @@
         <span class="mark" style="background-color:#be123a"></span>
     </div>
     <? /* Controller::debug($model); */ ?>
-    <?php $this->renderPartial('_news_list', compact('model')); ?>
+    <?php $this->renderPartial('common.views.news._news_list', compact('model')); ?>
     <input type="hidden" id="count_elem" value="10">
     <input type="hidden" id="cat_name" value="">
     <input type="hidden" id="proverca" value="1">

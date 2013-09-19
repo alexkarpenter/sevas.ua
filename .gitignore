@@ -1,5 +1,4 @@
 .git/*
-framework/*
 */config/*
 */*/index.php
 /nbproject/*
@@ -7,3 +6,4 @@ framework/*
 runtime/*
 */runtime/*
 */www/uploads/*
+.idea/*
