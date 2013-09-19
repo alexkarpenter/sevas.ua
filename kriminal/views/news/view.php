@@ -59,7 +59,38 @@
         </div>
         <div class="comment-wrappper">
             <div id="comments-answers-box">
-                <div class="comment_wrap"><h3>Комментарии</h3></div><div class="num2"></div><br class="c"><a name="comentblock"></a><div class="login-row">Если Вы хотите оставить комментарий, то Вам необходимо <a class="opener-popup" href="#">Войти</a> или <a class="opener-popup reg-tab" href="#" id="reg_button" onclick="$('#header-center-registration').show()">Зарегистрироваться</a></div><div style="margin-left:40px; margin-top:10px;">Отзывов пока нет. </div> 
+				<div class="form">
+
+					<?
+						if(!Yii::app()->user->isBlocked() && !Yii::app()->user->isGuest)
+							$this->renderPartial( 'common.views.news._add_comment', array(
+																						'commentForm' => $commentForm, 
+																						'url'=>$url 
+																					));
+						else
+							echo '<a href="'.$this->createUrl('user/reg').'">Зарегистрируйтесь, чтобы оставлять комментарии</a>';
+					?>
+
+					</div>
+
+					<div id="comment_wrap">
+						<?php foreach ($model->comments as $comment) { ?>		
+
+						<div class="comment" style="border: 1px solid; margin-bottom: 2px;">
+							<?= "Дата: ".date( "Y-m-d", $comment->create_date); ?><br>
+							<?= "Аватар: ".$comment->user->name; ?><br>
+							<img src="<?= $comment->user->avatarurl; ?>">
+							<?= "Пользователь: ".$comment->user->avatarurl; ?><br>
+							<?= "Текст комментария: $comment->text"; ?><br>
+
+							<? if(Yii::app()->user->checkRole('admin')) { ?>
+								<a href="<?= $this->createUrl('news/deletecomment',array('id_comment'=>$comment->id, 'back_url'=>$comment->news->url)) ?>">Удалить комментарий</a>
+							<? } ?>
+
+						</div>
+
+						<?php } ?>
+					</div>
             </div>
             <br class="c">
             <div class="main-answer" id="comment-template" style="display:none">

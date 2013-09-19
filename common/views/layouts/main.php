@@ -4,8 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
-        <script type="text/javascript" href="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" href="<?php echo Yii::app()->request->baseUrl; ?>/js/news_func.js"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/news_func.js"></script>
         <!-- blueprint CSS framework -->
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -19,6 +19,14 @@
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
     <body>
+		<?php if(Yii::app()->user->hasFlash('success')):
+			echo Yii::app()->user->getFlash('success'); 
+		endif; ?>
+		
+		<?php if(Yii::app()->user->hasFlash('error')):
+			echo Yii::app()->user->getFlash('error'); 
+		endif; ?>
+		
         <div id="wrapper">
             <div id="hide-isotop"></div>
             <div id="test"></div>
@@ -34,10 +42,15 @@
                     </div>
                     <div class="reg_succes"></div>
                     <div class="block">
-                        <div class="row">
-                            <a class="opener-popup" href="#">Вход с паролем</a> |
-                            <a class="opener-popup reg-tab" href="#">Регистрация</a>
-                        </div>
+						<?php if(!Yii::app()->user->isGuest) {
+							echo "<div class='row'>".Yii::app()->user->name."<a href='/user/logout'>Выход</a></div>";
+						}else{
+							echo  "<div class='row'>
+									<a class='opener-popup' href='/user/login'>Вход с паролем</a> |
+									<a class='opener-popup reg-tab' href='/user/reg'>Регистрация</a></div>";
+                        
+						}?>
+
                         <a class="opener-camera" href="http://webcam.sevas.ru"><span>Веб камеры<br>Севастополя</span></a>
                     </div>
                     <div class="side-wrap">
@@ -52,7 +65,7 @@
                      <div class="frame">
                          <ul class="nav nav_t">
                              <li><a href="http://politika.sevas.ru"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav01.png" width="18" height="18" alt="">ПОЛИТИКА</span><i>&nbsp;</i></a></li>
-                             <li><a href="http://kriminal.sevas.ru" class="active"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav12.png" width="18" height="18" alt="">КРИМИНАЛ</span><i>&nbsp;</i></a></li>
+                             <li><a href="/news/index" class="active"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav12.png" width="18" height="18" alt="">КРИМИНАЛ</span><i>&nbsp;</i></a></li>
                              <li><a href="http://news.sevas.ru/sport"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav02.png" width="18" height="18" alt="">СПОРТ</span><i>&nbsp;</i></a></li>
                              <li><a href="http://news.sevas.ru/holiday"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav08.png" width="18" height="18" alt="">ПРАЗДНИКИ</span><i>&nbsp;</i></a></li>
                              <li><a href="http://news.sevas.ru/party"><span><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/img-nav03.png" width="18" height="18" alt="">ВЕЧЕРИНКИ</span><i>&nbsp;</i></a></li>
@@ -72,7 +85,7 @@
                  </div>
               </div>
               <!-- header -->
-
+			  
               <div id="main">
                   <?php if (isset($this->breadcrumbs)): ?>
                       <?php

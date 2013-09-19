@@ -1,12 +1,10 @@
 var countNews=0;
 
-$(document).ready(function(){
-	$('button').click(function(){
-		countNews +=1;
-		outNews(countNews);
-		//Sconsole.log(countNews);
-	});
-})
+function addNews(){
+	countNews +=1;
+	outNews(countNews);
+}
+
 function outNews(count){
 		$.ajax({
 			url: "/news/index",

@@ -24,8 +24,8 @@ class BaseNewsController extends Controller
 	public function actionIndex()
 	{
 		$countNews = 3;
-		$count = $_GET['count']?$_GET['count']:0;
-		
+		$count = isset($_GET['count'])? $_GET['count']:0;
+
 		$model=News::model()->findAll(array(
 			'order'=>'date DESC',
 			'limit' => 3,
@@ -37,7 +37,7 @@ class BaseNewsController extends Controller
 				'order'=>'date DESC',
 				'limit' => $count + $countNews,
 			));
-			$this->renderPartial('_news_list', array('model'=>$model));
+			$this->renderPartial('common.views.news._news_list', compact('model'));
 		}
 		else
 		{
@@ -80,7 +80,7 @@ class BaseNewsController extends Controller
 		$comment->text = $comm;
 		$comment->create_date = $dt;
 		
-		$comment->save();	
+		$comment->save();
 		
 		$this->redirect(array('news/view', 'url'=>$url));
 	}
@@ -102,5 +102,3 @@ class BaseNewsController extends Controller
 
 }
 ?>
-
-
