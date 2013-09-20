@@ -70,17 +70,22 @@ class BaseNewsController extends Controller
 	
 	public function actionAddComment()
 	{
-		$comment = new Comment;
 		$url = $_GET['url'];
-		$dt = strtotime(date('Y-m-h'));
-		$comm = $_POST['CommentForm']['comment'];
 		
-		$comment->user_id = Yii::app()->user->id;
-		$comment->news_id = News::getIdByUrl($url);
-		$comment->text = $comm;
-		$comment->create_date = $dt;
-		
-		$comment->save();
+		if(isset($_POST['CommentForm']))
+		{
+			$comment = new Comment;
+			
+			$dt = strtotime(date('Y-m-d H:i:s'));
+			$comm = $_POST['CommentForm']['comment'];
+
+			$comment->user_id = Yii::app()->user->id;
+			$comment->news_id = News::getIdByUrl($url);
+			$comment->text = $comm;
+			$comment->create_date = $dt;
+
+			$comment->save();
+		}
 		
 		$this->redirect(array('news/view', 'url'=>$url));
 	}
@@ -98,6 +103,44 @@ class BaseNewsController extends Controller
 					);
 		
 		$this->redirect(array('news/view', 'url'=>$back_url));
+	}
+	
+	public function actionCreateNews()
+	{
+		$news_form = new NewsForm;
+		
+		if(isset($_POST['NewsForm']))
+		{
+			//var_dump($_POST['NewsForm']);die;
+			$model = new News;
+			$model->attributes=$_POST['NewsForm'];
+			$news = $_POST['NewsForm'];
+			var_dump($news['fl_block']);die;
+			
+			if($model->validate())
+			{
+				$model->name = $news['name'];
+				$model->title = $news['title'];
+				$model->name_h1 = $news['h1'];
+				$model->keywords = $news['keywords'];
+				$model->category_id = $news['name_category'];
+				$model->text_description = $news['text_description'];
+				$model->text = $news['text'];
+				$model->date = strtotime(date('Y-m-d H:i:s'));
+				$model->date = $news['fl_block'];
+				$model->save();
+				
+				Yii::app()->user->setFlash('notice','Новость добавлена');
+				$this->refresh();
+			}	
+			
+		}
+		
+		$this->render('new', array(
+									'news_form'=>$news_form
+								));
+		
+		
 	}
 
 }

@@ -85,8 +85,10 @@
                  </div>
               </div>
               <!-- header -->
-			  
+					  
               <div id="main">
+				  	<a href="/news/createnews">Создание новостей</a> |
+					<a href="">Редактирвоание новостей</a>
                   <?php if (isset($this->breadcrumbs)): ?>
                       <?php
                       $this->widget('zii.widgets.CBreadcrumbs', array(
