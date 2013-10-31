@@ -1,0 +1,33 @@
+div.attachment-container {
+}
+
+div.attachment-container a {
+border:none;
+cursor:pointer;
+}
+
+div.file-slot {
+margin-bottom: 2px;
+}
+
+div.file-slot-cell1 {
+	float:left;
+	width:120px;
+	margin:0 5px 0 0;
+}
+
+
+div.file-slot-cell2 {
+	float:left;
+	width:350px;
+}
+
+div.file-slot-cell2 textarea {
+	width:100%;
+}
+
+div.file-slot-cell2 input.file-title,
+div.file-slot-cell2 input.file-descr,
+div.file-slot-cell2 input.file-copyright {
+width:300px
+}

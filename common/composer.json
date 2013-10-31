@@ -1,0 +1,6 @@
+{
+    "require": {
+        "yiiext/imperavi-redactor-widget": "*",
+        "imagine/imagine": "*"
+    }
+}

@@ -1,0 +1,8 @@
+body {
+    margin:0;
+    color:#2e2e2e;
+    font:13px/18px arial, sans-serif;
+    background:yellow;
+    min-width:1000px;
+    height:100%
+}

@@ -1,0 +1,2 @@
+ENABLED="true"
+OPTIONS="--log-file=/var/log/mysql-proxy-log --admin-username=root --admin-password=proxypass --admin-lua-script=/usr/share/mysql-proxy/admin.lua --proxy-lua-script=/home/pavl/code/php/sevas/portal-of-sevastopol/common/migrations/mysql-proxy/log-ddl.lua"
